@@ -1,3 +1,3 @@
 # ComputerCraft-Programs
 
-Monorepo for our theComputerCraft:Tweaked programs
+Monorepo for our ComputerCraft:Tweaked programs
