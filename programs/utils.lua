@@ -84,3 +84,38 @@ function returnPaces(nPaces)
         turtle.forward()
     end
 end
+
+function mineShaft(length, torchInterval)
+    -- Checking if length is number
+    if type(length) ~= "number" or type(torchInterval) ~= "number" then
+        print("Input length/torchInterval is not a number, please try again")
+        error()
+    end
+    -- Checking if we have torches in the 16th slot
+    local torchslot = 16
+    local data = turtle.getItemDetail(torchslot)
+    if data then
+        if data.name == "minecraft:torch" then
+            print("I have " .. tostring(data.count) .. " torches")
+        else
+            print("I don't have torches")
+            error()
+        end
+    end
+
+    -- Digging the Tunnel
+    for l = 1, length do
+        turtle.dig()
+        turtle.forward()
+        turtle.digUp()
+
+        -- Placing Torches every interval
+        if length % torchInterval == 0 and data.count > 0 then
+            turtle.placeUp(torchslot)
+        else
+            print("No torches, stopping")
+            error()
+        end
+        l = l + 1
+    end
+end
